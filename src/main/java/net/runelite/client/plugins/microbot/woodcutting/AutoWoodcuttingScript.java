@@ -39,6 +39,7 @@ import java.util.stream.Collectors;
 
 import static net.runelite.api.gameval.AnimationID.*;
 import static net.runelite.api.gameval.ItemID.TINDERBOX;
+import static net.runelite.client.plugins.microbot.util.player.Rs2Player.getRealSkillLevel;
 
 
 @Slf4j
@@ -210,6 +211,7 @@ public class AutoWoodcuttingScript extends Script {
     private boolean preFlightChecks(AutoWoodcuttingConfig config) {
         if (!Microbot.isLoggedIn()) return true;
         if (!super.run()) return true;
+        if (Rs2Player.getRealSkillLevel(Skill.HITPOINTS) <= 0) return true;
 
         if (config.hopWhenPlayerDetected()) {
             if (Rs2Player.logoutIfPlayerDetected(1, 10000))
@@ -579,7 +581,7 @@ public class AutoWoodcuttingScript extends Script {
         boolean progressive = config.progressiveMode();
 
         if (progressive) {
-            int woodcuttingLevel = Rs2Player.getRealSkillLevel(Skill.WOODCUTTING);
+            int woodcuttingLevel = getRealSkillLevel(Skill.WOODCUTTING);
             ProgressiveSelection selection = determineProgressiveSelection(woodcuttingLevel);
             resolvedTree = selection.getTree();
             candidateLocation = selection.getLocation();
