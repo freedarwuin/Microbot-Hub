@@ -194,7 +194,7 @@ public interface AutoWoodcuttingConfig extends Config {
             section = inventorySection
     )
     default String itemsToKeep() {
-        return "axe,tinderbox,knife,bowstring,crystal shard,demon tear,petal garland,golden pheasant egg,pheasant tail feathers,fox whistle,key";
+        return "axe,tinderbox,knife,bowstring,crystal shard,demon tear,petal garland,golden pheasant egg,pheasant tail feathers,fox whistle,key, Anima-infused bark";
     }
 
     @ConfigItem(
