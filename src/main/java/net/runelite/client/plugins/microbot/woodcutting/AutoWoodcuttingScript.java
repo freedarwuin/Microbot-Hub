@@ -213,6 +213,11 @@ public class AutoWoodcuttingScript extends Script {
         if (!super.run()) return true;
         if (Rs2Player.getRealSkillLevel(Skill.HITPOINTS) <= 0) return true;
 
+        if (!config.enableWoodcutting()) {
+            updateActiveTree(config);
+            return true;
+        }
+
         if (config.hopWhenPlayerDetected()) {
             if (Rs2Player.logoutIfPlayerDetected(1, 10000))
                 return true;
@@ -246,7 +251,7 @@ public class AutoWoodcuttingScript extends Script {
         }
 
         if (!getActiveTree().hasRequiredLevel()) {
-            Microbot.showMessage("You do not have the required woodcutting level to cut this tree.");
+            Microbot.showMessage("You do not have the required woodcutting level to cut this tree. " + Rs2Player.getRealSkillLevel(Skill.WOODCUTTING));
             shutdown();
             return true;
         }
