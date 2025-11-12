@@ -211,7 +211,7 @@ public class AutoWoodcuttingScript extends Script {
     private boolean preFlightChecks(AutoWoodcuttingConfig config) {
         if (!Microbot.isLoggedIn()) return true;
         if (!super.run()) return true;
-        if (Rs2Player.getRealSkillLevel(Skill.HITPOINTS) <= 0) return true;
+        if (Rs2Player.getRealSkillLevel(Skill.WOODCUTTING) <= 0) return true;
 
         if (!config.enableWoodcutting()) {
             updateActiveTree(config);
