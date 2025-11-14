@@ -76,7 +76,7 @@ public class RootEvent implements BlockingEvent {
                 }
                 // Interact with the special root
                 Microbot.log("RootEvent: Interacting with special root at " + specialRoot.getWorldLocation());
-                Rs2GameObject.interact(specialRoot, "Chop down");
+                specialRoot.click("Chop down");
                 Rs2Player.waitForAnimation(5000);
                 sleepUntil(() -> !Rs2Player.isInteracting(), 40000);
             }
@@ -92,7 +92,7 @@ public class RootEvent implements BlockingEvent {
                 }
                 // Interact with the regular root
                 Microbot.log("RootEvent: Interacting with regular root at " + root.getWorldLocation());
-                Rs2GameObject.interact(root, "Chop down");
+                root.click("Chop down");
                 Rs2Player.waitForAnimation(5000);
                 sleepUntil(() -> !Rs2Player.isInteracting(), 40000);
             }
