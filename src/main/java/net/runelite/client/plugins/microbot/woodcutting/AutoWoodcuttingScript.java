@@ -532,14 +532,12 @@ public class AutoWoodcuttingScript extends Script {
         WoodcuttingTree treeType = getActiveTree();
         int logCount = Rs2Inventory.count(treeType.getLogID());
         if (logCount > 0) {
+            //TODO: should we really stop script if fletching failed?
             boolean startFletchingSucces = Rs2Fletching.fletchItems(treeType.getLogID(), config.fletchingType().getContainsInventoryName(), "All");
             int fletchedItems = Rs2Inventory.getList(itemBounds -> itemBounds.getName().contains(config.fletchingType().getContainsInventoryName())).size();
             log.info("We fletched {} {} into {} of {} , success: {}", logCount, treeType, fletchedItems, config.fletchingType().getContainsInventoryName(), startFletchingSucces);
             if (!startFletchingSucces) {
-                log.error("Failed to start fletching, stopping script");
-                shutdown();
                 return false;
-
             }
             if (Rs2Inventory.count(treeType.getLogID())!=0){
                 return false;
