@@ -46,6 +46,7 @@ public class GiantSeaweedFarmerPlugin extends Plugin {
     @Override
     protected void startUp() throws AWTException {
         scriptStartTime = Instant.now();
+        giantSeaweedFarmerScript.GSF_Running = true;
         if (overlayManager != null) {
             overlayManager.add(giantSeaweedFarmerOverlay);
         }

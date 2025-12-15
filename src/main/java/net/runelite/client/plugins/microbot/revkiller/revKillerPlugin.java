@@ -31,8 +31,8 @@ import java.awt.*;
         isExternal = PluginConstants.IS_EXTERNAL // Whether the plugin is external
 )
 @Slf4j
-public class revKillerPlugin extends Plugin  {
-    public static final String version = "2.0.5";
+public class revKillerPlugin extends Plugin implements SchedulablePlugin {
+    public static final String version = "2.0.7";
     @Inject
     private net.runelite.client.plugins.microbot.revkiller.revKillerConfig config;
     @Provides
