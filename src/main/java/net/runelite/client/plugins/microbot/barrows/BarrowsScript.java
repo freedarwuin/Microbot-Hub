@@ -841,14 +841,12 @@ public class BarrowsScript extends Script {
     public void lootChampionScroll(){
         Rs2TileItemModel championScroll = rs2TileItemCache.query().where(x -> x.getId() == ItemID.SKELETON_CHAMPION_SCROLL).nearest();
         if(championScroll != null){
-            if(championScroll.hasLineOfSight()){
                 while(rs2TileItemCache.query().where(x -> x.getId() == ItemID.SKELETON_CHAMPION_SCROLL).nearest() != null && !Rs2Inventory.contains(championScroll.getId())){
                     if(!super.isRunning()) break;
 
                     Rs2GroundItem.interact(championScroll.getName(), "Take");
                     sleepUntil(()-> !Rs2Player.isMoving() && Rs2Inventory.contains(championScroll.getId()), Rs2Random.between(4000,12000));
                 }
-            }
         }
     }
 

@@ -155,7 +155,7 @@ public class AutoWoodcuttingScript extends Script {
                     .where(x -> patchIds.contains(x.getId()))
                     .nearest();
         } else {
-            tree = rs2TileObjectCache.query().within(getInitialPlayerLocation(), config.distanceToStray()).withName(treeType.getName());
+            tree = rs2TileObjectCache.query().within(getInitialPlayerLocation(), config.distanceToStray()).withName(treeType.getName()).nearest();
         }
 
         if (tree != null) {
