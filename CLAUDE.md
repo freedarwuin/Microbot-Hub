@@ -35,9 +35,6 @@ The build system uses **Gradle with custom plugin discovery and packaging**:
 # Copy plugin documentation to public/docs/
 ./gradlew copyPluginDocs
 
-# Stage plugin artifacts to `build/plugin-repo` for upload to GitHub Releases
-./gradlew publish
-
 # Launch RuneLite debug session with plugins from Microbot.java
 ./gradlew run --args='--debug'
 
@@ -169,8 +166,7 @@ Based on recent commits:
 1. Build plugins: `./gradlew build`
 2. Generate metadata: `./gradlew generatePluginsJson` (requires JDK 11 exactly)
 3. Copy documentation: `./gradlew copyPluginDocs`
-4. Stage artifacts locally: `./gradlew publish` (outputs to `build/plugin-repo` for packaging/upload)
-5. Upload `build/libs/<pluginname>-<version>.jar` and updated `public/docs/plugins.json` as assets on the GitHub release tagged with `<version>`: `https://github.com/chsami/Microbot-Hub/releases/download/<version>/<pluginname>-<version>.jar`
+4. Upload `build/libs/<pluginname>-<version>.jar` and updated `public/docs/plugins.json` as assets on the GitHub release tagged with `<version>` (or `latest-release` for the stable tag): `https://github.com/chsami/Microbot-Hub/releases/download/<tag>/<pluginname>-<version>.jar`
 
 ## Important Implementation Details
 
