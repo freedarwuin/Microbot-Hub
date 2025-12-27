@@ -18,7 +18,7 @@ The hub is the dedicated place for community created plugins and scripts. It exi
 2. Gradle installed or the Gradle wrapper from the repository
 3. Git for version control
 
-The build pulls the Microbot client JAR from GitHub Releases using the version configured in `gradle/project-config.gradle` (override with `-PmicrobotClientVersion=<version>`). If you need to work offline, point to a downloaded client JAR with `-PmicrobotClientPath=/absolute/path/to/microbot-<version>.jar`.
+By default the build calls `https://microbot.cloud/api/version/client` to fetch the latest client version, falling back to `2.0.61` if the lookup fails. Override with `-PmicrobotClientVersion=<version>` or `-PmicrobotClientVersion=latest`. If you need to work offline, point to a downloaded client JAR with `-PmicrobotClientPath=/absolute/path/to/microbot-<version>.jar`.
 
 ## Repository layout
 

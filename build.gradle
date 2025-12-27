@@ -64,9 +64,12 @@ configurations {
         exclude group: 'net.runelite', module: 'microbot'
     }
 
-    // Disable source downloads for all configurations
+    // Disable source downloads for all configurations and rewrite legacy coordinates
     configureEach {
         resolutionStrategy {
+            dependencySubstitution {
+                substitute module("com.microbot:client") using module("com.microbot:microbot:${microbotClientVersion}")
+            }
             eachDependency { details ->
                 if (details.target.group == 'com.microbot' && details.target.name == 'microbot') {
                     details.artifactSelection {
@@ -84,6 +87,7 @@ repositories {
         url = uri(project.ext.getGithubClientBaseUrl())
         patternLayout {
             artifact "[revision]/[module]-[revision].[ext]"
+            artifact "[revision]/microbot-[revision].[ext]"
         }
         metadataSources { artifact() }
     }

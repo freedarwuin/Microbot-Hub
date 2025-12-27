@@ -175,7 +175,7 @@ Based on recent commits:
 ## Important Implementation Details
 
 - **Java Version**: JDK 11 (configured in `project-config.gradle` with `TARGET_JDK_VERSION = 11`, vendor `ADOPTIUM`)
-- **Microbot Client Dependency**: `com.microbot:microbot:<version>@jar` resolved from GitHub Releases (`https://github.com/chsami/Microbot/releases/download/<version>/microbot-<version>.jar`); override with `-PmicrobotClientVersion=<version>` or supply a local JAR for offline work via `-PmicrobotClientPath=/absolute/path/to/microbot-<version>.jar`
+- **Microbot Client Dependency**: Defaults to the latest version resolved via `https://microbot.cloud/api/version/client`, falling back to `2.0.61` if lookup fails. Artifacts come from GitHub Releases (`https://github.com/chsami/Microbot/releases/download/<version>/microbot-<version>.jar`). Override with `-PmicrobotClientVersion=<version>` or `-PmicrobotClientVersion=latest`, or supply a local JAR for offline work via `-PmicrobotClientPath=/absolute/path/to/microbot-<version>.jar`
 - **Shadow JAR Excludes**: Common exclusions defined in `plugin-utils.gradle` include `docs/**`, `dependencies.txt`, metadata files, and module-info
 - **Reproducible Builds**: JAR tasks disable file timestamps, use reproducible file order, and normalize file permissions to `0644`
 - **Descriptor Parsing**: Build system uses regex to extract plugin metadata from Java source files (see `getPluginDescriptorInfo` in `plugin-utils.gradle`)
