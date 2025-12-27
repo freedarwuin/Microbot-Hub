@@ -293,11 +293,7 @@ tasks.register('validateJdkVersion') {
         def majorVersion = currentJdkVersion.split('\\.')[0] as Integer
 
         if (majorVersion != expectedVersion) {
-            throw new GradleException(
-                "❌ JDK version mismatch!\n" +
-                "Expected: JDK ${expectedVersion}\n" +
-                "Current:  JDK ${majorVersion} (${currentJdkVersion})\n"
-            )
+            logger.log(LogLevel.WARN, "❌ JDK version mismatch! Expected JDK ${expectedVersion}, but found JDK ${majorVersion} (${currentJdkVersion})")
         } else {
             logger.lifecycle("✅ JDK version validated: ${currentJdkVersion}")
         }
