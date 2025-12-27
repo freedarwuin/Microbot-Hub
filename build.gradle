@@ -3,7 +3,6 @@ plugins {
     id 'java'
     id 'io.freefair.lombok' version '8.6'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'maven-publish'
     id 'idea'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.3'
 }
@@ -184,29 +183,6 @@ afterEvaluate {
             jarTask : jarTask,
             version : pluginVersionFromPluginJson(plugin.dir)
         ]
-    }
-
-    // Configure publishing
-    publishing {
-        publications {
-            pluginPublications.each { pub ->
-                create("${pub.name}Publication", MavenPublication) {
-                    groupId = project.ext.MAVEN_GROUP_ID
-                    artifactId = pub.name.toLowerCase()
-                    version = pub.version
-
-                    artifact(pub.jarTask.get().archiveFile) {
-                        extension "jar"
-                    }
-                }
-            }
-        }
-        repositories {
-            maven {
-                name = "local-plugin-repo"
-                url = layout.buildDirectory.dir("plugin-repo")
-            }
-        }
     }
 
     // Configure test source set to have access to all plugin source sets
