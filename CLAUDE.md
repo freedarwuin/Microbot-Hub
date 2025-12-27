@@ -35,9 +35,6 @@ The build system uses **Gradle with custom plugin discovery and packaging**:
 # Copy plugin documentation to public/docs/
 ./gradlew copyPluginDocs
 
-# Stage plugin artifacts to `build/plugin-repo` for upload to GitHub Releases
-./gradlew publish
-
 # Launch RuneLite debug session with plugins from Microbot.java
 ./gradlew run --args='--debug'
 
@@ -169,13 +166,13 @@ Based on recent commits:
 1. Build plugins: `./gradlew build`
 2. Generate metadata: `./gradlew generatePluginsJson` (requires JDK 11 exactly)
 3. Copy documentation: `./gradlew copyPluginDocs`
-4. Stage artifacts locally: `./gradlew publish` (outputs to `build/plugin-repo` for packaging/upload)
-5. Upload `build/libs/<pluginname>-<version>.jar` and updated `public/docs/plugins.json` as assets on the GitHub release tagged with `<version>`: `https://github.com/chsami/Microbot-Hub/releases/download/<version>/<pluginname>-<version>.jar`
+4. Upload `build/libs/<pluginname>-<version>.jar` and updated `public/docs/plugins.json` as assets on the GitHub release tagged with `<version>` (or `latest-release` for the stable tag): `https://github.com/chsami/Microbot-Hub/releases/download/<tag>/<pluginname>-<version>.jar`
 
 ## Important Implementation Details
 
 - **Java Version**: JDK 11 (configured in `project-config.gradle` with `TARGET_JDK_VERSION = 11`, vendor `ADOPTIUM`)
 - **Microbot Client Dependency**: Defaults to the latest version resolved via `https://microbot.cloud/api/version/client`, falling back to `2.0.61` if lookup fails. Artifacts come from GitHub Releases (`https://github.com/chsami/Microbot/releases/download/<version>/microbot-<version>.jar`). Override with `-PmicrobotClientVersion=<version>` or `-PmicrobotClientVersion=latest`, or supply a local JAR for offline work via `-PmicrobotClientPath=/absolute/path/to/microbot-<version>.jar`
+- **Plugin Release Tag**: `plugins.json` uses a stable release tag (`latest-release`) so download URLs stay constant: `https://github.com/chsami/Microbot-Hub/releases/download/latest-release/<plugin>-<version>.jar`. Override with `-PpluginsReleaseTag=<tag>` if needed.
 - **Shadow JAR Excludes**: Common exclusions defined in `plugin-utils.gradle` include `docs/**`, `dependencies.txt`, metadata files, and module-info
 - **Reproducible Builds**: JAR tasks disable file timestamps, use reproducible file order, and normalize file permissions to `0644`
 - **Descriptor Parsing**: Build system uses regex to extract plugin metadata from Java source files (see `getPluginDescriptorInfo` in `plugin-utils.gradle`)

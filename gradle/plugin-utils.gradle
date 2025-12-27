@@ -212,8 +212,12 @@ ext {
                 if (releaseBase.endsWith('/')) {
                     releaseBase = releaseBase.substring(0, releaseBase.length() - 1)
                 }
+                def releaseTag = project.ext.getGithubPluginsReleaseTag()
+                if (releaseTag.endsWith('/')) {
+                    releaseTag = releaseTag.substring(0, releaseTag.length() - 1)
+                }
                 def pluginId = plugin.name.toLowerCase()
-                parsed.url = "${releaseBase}/${descriptorInfo.version}/${pluginId}-${descriptorInfo.version}.jar"
+                parsed.url = "${releaseBase}/${releaseTag}/${pluginId}-${descriptorInfo.version}.jar"
 
                 plugins << parsed
                 logger.info("✅ Plugin ${plugin.name} processed successfully")
