@@ -18,6 +18,8 @@ The hub is the dedicated place for community created plugins and scripts. It exi
 2. Gradle installed or the Gradle wrapper from the repository
 3. Git for version control
 
+The build pulls the Microbot client JAR from GitHub Releases using the version configured in `gradle/project-config.gradle` (override with `-PmicrobotClientVersion=<version>`). If you need to work offline, point to a downloaded client JAR with `-PmicrobotClientPath=/absolute/path/to/microbot-<version>.jar`.
+
 ## Repository layout
 
 Each plugin lives in its own Java package. A typical plugin package can contain the following files and folders:
@@ -115,6 +117,8 @@ public class YourPlugin extends Plugin {
 
 
 The build produces plugin jars in the usual Gradle output folders. If the project applies a shading step, the final jars will be placed in the shadow or libs folder depending on the build script.
+
+Release downloads expect plugin assets at: `https://github.com/chsami/Microbot-Hub/releases/download/<version>/<pluginname>-<version>.jar`.
 
 ## Running a plugin in RuneLiteDebug for test purpose
 
