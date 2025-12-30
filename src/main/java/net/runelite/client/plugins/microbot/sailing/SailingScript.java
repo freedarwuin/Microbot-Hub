@@ -3,7 +3,7 @@ package net.runelite.client.plugins.microbot.sailing;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.Script;
-import net.runelite.client.plugins.microbot.sailing.features.SalvagingFeature;
+import net.runelite.client.plugins.microbot.sailing.features.salvaging.SalvagingScript;
 
 import javax.inject.Inject;
 import java.util.concurrent.TimeUnit;
@@ -11,14 +11,13 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class SailingScript extends Script {
 
-    private final SailingPlugin plugin;
-	private final SailingConfig config;
+    private final SailingConfig config;
+    private final SalvagingScript salvagingFeature;
 
-    private final SalvagingFeature salvagingFeature = new SalvagingFeature();
 	@Inject
-	public SailingScript(SailingPlugin plugin, SailingConfig config) {
-		this.plugin = plugin;
+	public SailingScript(SailingConfig config, SalvagingScript salvagingFeature) {
 		this.config = config;
+		this.salvagingFeature = salvagingFeature;
 	}
 
     public boolean run() {
