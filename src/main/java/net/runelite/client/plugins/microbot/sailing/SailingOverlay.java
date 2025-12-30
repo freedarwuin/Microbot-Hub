@@ -22,7 +22,7 @@ public class SailingOverlay extends OverlayPanel {
     private final SalvagingScript salvagingScript;
 
     @Inject
-    SailingOverlay(SailingPlugin plugin, Client client, SailingConfig config, SalvagingScript salvagingScript) {
+    SailingOverlay(MSailingPlugin plugin, Client client, SailingConfig config, SalvagingScript salvagingScript) {
         super(plugin);
         this.client = client;
         this.config = config;
@@ -58,7 +58,7 @@ public class SailingOverlay extends OverlayPanel {
 
     private void addTitle() {
         panelComponent.getChildren().add(TitleComponent.builder()
-                .text("Sailing v" + SailingPlugin.version)
+                .text("Sailing v" + MSailingPlugin.version)
                 .color(new Color(0, 150, 200))
                 .build());
     }

@@ -17,17 +17,17 @@ import java.awt.*;
 	description = "Microbot Sailing Plugin",
 	tags = {"sailing"},
 	authors = { "Mocrosoft" },
-	version = SailingPlugin.version,
+	version = MSailingPlugin.version,
 	minClientVersion = "2.1.0",
 	enabledByDefault = PluginConstants.DEFAULT_ENABLED,
 	isExternal = PluginConstants.IS_EXTERNAL,
-    cardUrl = "https://chsami.github.io/Microbot-Hub/SailingPlugin/assets/card.jpg",
-    iconUrl = "https://chsami.github.io/Microbot-Hub/SailingPlugin/assets/icon.jpg"
+    cardUrl = "https://chsami.github.io/Microbot-Hub/MSailingPlugin/assets/card.jpg",
+    iconUrl = "https://chsami.github.io/Microbot-Hub/MSailingPlugin/assets/icon.jpg"
 )
 @Slf4j
-public class SailingPlugin extends Plugin {
+public class MSailingPlugin extends Plugin {
 
-	static final String version = "1.0.0";
+	static final String version = "1.0.1";
 
     @Inject
     private SailingConfig config;
