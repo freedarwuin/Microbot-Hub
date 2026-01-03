@@ -1,6 +1,7 @@
 package net.runelite.client.plugins.microbot.sailing.features.salvaging;
 
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Skill;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.microbot.api.boat.Rs2BoatCache;
 import net.runelite.client.plugins.microbot.api.player.models.Rs2PlayerModel;
@@ -10,6 +11,7 @@ import net.runelite.client.plugins.microbot.sailing.SailingConfig;
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory;
 import net.runelite.client.plugins.microbot.util.magic.Rs2Magic;
 import net.runelite.client.plugins.microbot.util.math.Rs2Random;
+import net.runelite.client.plugins.microbot.util.player.Rs2Player;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -174,7 +176,7 @@ public class SalvagingScript {
         for (String itemName : itemsToAlch) {
             if (Rs2Inventory.hasItem(itemName)) {
                 Rs2Magic.alch(itemName);
-                sleep(600, 800);
+                Rs2Player.waitForXpDrop(Skill.MAGIC, 10000, false);
             }
         }
     }
