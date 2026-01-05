@@ -5,6 +5,7 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
+import net.runelite.client.plugins.microbot.sailing.features.trials.data.TrialRanks;
 
 import java.awt.*;
 
@@ -25,6 +26,13 @@ public interface SailingConfig extends Config {
 		position = 1
 	)
 	String highlightSection = "highlight";
+
+	@ConfigSection(
+		name = "Trials",
+		description = "Barracuda Trials settings",
+		position = 2
+	)
+	String trialsSection = "trials";
 
 	@ConfigItem(
 		keyName = "Salvgaging",
@@ -159,5 +167,53 @@ public interface SailingConfig extends Config {
 	default Color salvagingHighLevelWrecksColour()
 	{
 		return Color.RED;
+	}
+
+	@ConfigItem(
+		keyName = "trials",
+		name = "Enable Trials",
+		description = "Enable Barracuda Trials automation.",
+		position = 0,
+		section = trialsSection
+	)
+	default boolean trials()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "trialsRank",
+		name = "Target Rank",
+		description = "The rank route to follow during trials.",
+		position = 1,
+		section = trialsSection
+	)
+	default TrialRanks trialsRank()
+	{
+		return TrialRanks.Swordfish;
+	}
+
+	@ConfigItem(
+		keyName = "showTrialRoute",
+		name = "Show Route Overlay",
+		description = "Show the trial route path on screen.",
+		position = 2,
+		section = trialsSection
+	)
+	default boolean showTrialRoute()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "autoNavigate",
+		name = "Auto Navigate",
+		description = "Automatically navigate the boat along the route.",
+		position = 3,
+		section = trialsSection
+	)
+	default boolean autoNavigate()
+	{
+		return false;
 	}
 }
